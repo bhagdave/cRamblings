@@ -1,0 +1,91 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+AWAY_RANDOM	team.h	7;"	d
+CC	makefile	/^CC=gcc$/;"	m
+CFLAGS	makefile	/^CFLAGS=-I.$/;"	m
+DEBUG	testteam.c	3;"	d	file:
+DEPS	makefile	/^DEPS=team.h score.h league.h season.h menu.h$/;"	m
+DRAW	team.h	12;"	d
+HOME_RANDOM	team.h	6;"	d
+LEAGUE	league.h	2;"	d
+LOSS	team.h	13;"	d
+OBJ	makefile	/^OBJ=testteam.o league.o team.o score.o menu.o season.o$/;"	m
+PTSFOR3GOALS	team.h	10;"	d
+PTSFORDRAW	team.h	9;"	d
+PTSFORWIN	team.h	8;"	d
+SCORE	score.h	2;"	d
+SORTED	league.h	6;"	d
+TEAM	team.h	5;"	d
+UNSORTED	league.h	7;"	d
+WIN	team.h	11;"	d
+add_to_league	league.c	/^void add_to_league(league *destination, team *toadd){$/;"	f
+addresult	team.c	/^void addresult(team *home, team *away, score result){$/;"	f
+away	score.h	/^	unsigned away;$/;"	m	struct:score
+away	team.h	/^	team_stats away;$/;"	m	struct:team
+away_random	team.h	/^	short away_random;$/;"	m	struct:team
+bonus_points	team.h	/^	short bonus_points;$/;"	m	struct:team
+boolean	team.h	/^typedef enum{true,false} boolean;$/;"	t	typeref:enum:__anon1
+calculate_gd	team.c	/^void calculate_gd(team *calc){$/;"	f
+calculate_points	team.c	/^void calculate_points(team *calc){$/;"	f
+cleanup_teams	league.c	/^void cleanup_teams(league *league){$/;"	f
+create_league	league.c	/^league create_league(char *name, int teams){$/;"	f
+create_random_score	score.c	/^score create_random_score(int home, int away){$/;"	f
+create_team	team.c	/^team* create_team(char *name){$/;"	f
+cursor	league.h	/^	int cursor;$/;"	m	struct:league
+do_menu_choice	menu.c	/^void do_menu_choice(char pick){$/;"	f
+do_promotions	league.c	/^void do_promotions(league *league){$/;"	f
+doseason	season.c	/^void doseason(league *leag){$/;"	f
+drawn	team.h	/^	short drawn;$/;"	m	struct:team_stats
+false	team.h	/^typedef enum{true,false} boolean;$/;"	e	enum:__anon1
+form	team.h	/^	unsigned short form;$/;"	m	struct:team_stats
+free_league	league.c	/^void free_league(league *freeme){$/;"	f
+gd	team.h	/^	short gd;$/;"	m	struct:team
+get_menu_option	menu.c	/^char get_menu_option(){$/;"	f
+goals_against	team.h	/^	short goals_against;$/;"	m	struct:team_stats
+goals_for	team.h	/^	short goals_for;$/;"	m	struct:team_stats
+home	score.h	/^	unsigned home;$/;"	m	struct:score
+home	team.h	/^	team_stats home;$/;"	m	struct:team
+home_random	team.h	/^	short home_random;$/;"	m	struct:team
+league	league.h	/^struct league{$/;"	s
+league	league.h	/^typedef struct league league;$/;"	t	typeref:struct:league
+losing_streak	team.h	/^	short losing_streak;$/;"	m	struct:team_stats
+lost	team.h	/^	short lost;$/;"	m	struct:team_stats
+main	testteam.c	/^int main(void){$/;"	f
+name	league.h	/^	char *name;$/;"	m	struct:league
+name	team.h	/^	char * name;$/;"	m	struct:team
+no_of_teams	league.h	/^	int no_of_teams;$/;"	m	struct:league
+played	team.h	/^	short played;$/;"	m	struct:team_stats
+points	team.h	/^	short points;$/;"	m	struct:team
+predict_score	team.c	/^score predict_score(team *home, team *away){$/;"	f
+print_headers	team.c	/^void print_headers(void){$/;"	f
+print_league	league.c	/^void print_league(league *toprint){$/;"	f
+print_menu	menu.c	/^void print_menu(char *elements[5]){$/;"	f
+print_team	team.c	/^void print_team(team *print){$/;"	f
+promoted	league.h	/^	short promoted;$/;"	m	struct:league
+promoted_to	league.h	/^	struct league *promoted_to;$/;"	m	struct:league	typeref:struct:league::league
+record_away_draw	team.c	/^void record_away_draw(team *away, score result){$/;"	f
+record_away_loss	team.c	/^void record_away_loss(team *away, score result){$/;"	f
+record_away_win	team.c	/^void record_away_win(team *away, score result){$/;"	f
+record_home_draw	team.c	/^void record_home_draw(team *home, score result){$/;"	f
+record_home_loss	team.c	/^void record_home_loss(team *home, score result){$/;"	f
+record_home_win	team.c	/^void record_home_win(team *home, score result){$/;"	f
+relegated	league.h	/^	short relegated;$/;"	m	struct:league
+relegated_to	league.h	/^	struct league *relegated_to;$/;"	m	struct:league	typeref:struct:league::league
+score	score.h	/^struct score{$/;"	s
+score	score.h	/^typedef struct score score;$/;"	t	typeref:struct:score
+sort_league	league.c	/^void sort_league(league *tosort){$/;"	f
+team	team.h	/^struct team {$/;"	s
+team	team.h	/^typedef struct team team;$/;"	t	typeref:struct:team
+team_array	league.h	/^	team  **team_array;$/;"	m	struct:league
+team_stats	team.h	/^struct team_stats{$/;"	s
+team_stats	team.h	/^typedef struct team_stats team_stats;$/;"	t	typeref:struct:team_stats
+team_update	team.c	/^static void team_update(char flag,team *team, score result){$/;"	f	file:
+true	team.h	/^typedef enum{true,false} boolean;$/;"	e	enum:__anon1
+weighting	team.h	/^	int weighting;$/;"	m	struct:team
+winning_streak	team.h	/^	short winning_streak;$/;"	m	struct:team_stats
+won	team.h	/^	short won;$/;"	m	struct:team_stats
+zero_team	team.c	/^void zero_team(team *team){$/;"	f

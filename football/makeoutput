@@ -1,0 +1,2 @@
+gcc -c -o testteam.o testteam.c -I.
+makefile:7: recipe for target 'testteam.o' failed
