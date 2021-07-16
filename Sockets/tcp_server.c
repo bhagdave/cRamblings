@@ -10,6 +10,7 @@ int main(){
 	char server_message[256] = "You have reached the dave server";
 	int server_socket;
 	int client_socket;
+	char client_response [256];
 
 	server_socket = socket(AF_INET,SOCK_STREAM,0);
 	printf("Socket is:%d\n",server_socket);
@@ -24,6 +25,9 @@ int main(){
 
 	client_socket = accept(server_socket, NULL, NULL);
 
+	recv(client_socket, &client_response,sizeof(client_response),0);
+	printf("Data Received back from client\n%s\n",
+		client_response);
 	send(client_socket,server_message,sizeof(server_message),0);
 	close(server_socket);
 

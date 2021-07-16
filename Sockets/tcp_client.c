@@ -7,6 +7,7 @@
 #include  <netinet/in.h>
 
 int main(){
+	char client_message[256] = "Hello from the client";
 	int network_socket;
 	int connect_result;
 	char server_response [256];
@@ -25,6 +26,8 @@ int main(){
 		return connect_result;
 	}
 
+
+	send(network_socket,client_message,sizeof(client_message),0);
 	recv(network_socket, &server_response,sizeof(server_response),0);
 	printf("Data Received back from sever\n%s\n",
 		server_response);
