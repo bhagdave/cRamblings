@@ -27,7 +27,7 @@ int main(void){
 	league league2;
 	srand(time(NULL));
 	prem = create_league("Premiership", 20);
-	prem.relegated = 8;
+	prem.relegated = 3;
     prem.promoted_to = NULL;
 	for (i = 0; i < 20; i++){
 		temp = create_team(premier[i]);
@@ -42,9 +42,9 @@ int main(void){
 		add_to_league(&prem,temp);
 	}
 	champ = create_league("Championship", 24);
-	champ.promoted = 8;
+	champ.promoted = 3;
 	champ.promoted_to = &prem;
-	champ.relegated = 10;
+	champ.relegated = 4;
 	for (i = 0; i < 24; i++){
 		temp = create_team(championship[i]);
 		if (i < 7){
@@ -55,9 +55,9 @@ int main(void){
 		add_to_league(&champ,temp);
 	}
 	league1 = create_league("League One", 24);
-	league1.promoted = 10;
+	league1.promoted = 4;
 	league1.promoted_to = &champ;
-	league1.relegated = 10;
+	league1.relegated = 4;
 	for (i = 0; i < 24; i++){
 		temp = create_team(leagueone[i]);
 		if (i < 7){
@@ -68,7 +68,7 @@ int main(void){
 		add_to_league(&league1,temp);
 	}
 	league2 = create_league("League Two", 24);
-	league2.promoted = 10;
+	league2.promoted = 4;
 	league2.promoted_to = &league1;
 	league2.relegated = 0;
 	for (i = 0; i < 24; i++){
@@ -92,25 +92,25 @@ int main(void){
 		// add weighting 
 		for (i = 0; i < 20; i++){
 			if (i < 5){
-				prem.team_array[i]->weighting += 1;
-				champ.team_array[i]->weighting -= 1;
-				league1.team_array[i]->weighting -= 1;
-				league2.team_array[i]->weighting -= 1;
+				prem.team_array[i]->weighting += 2;
+				champ.team_array[i]->weighting += 2;
+				league1.team_array[i]->weighting += 2;
+				league2.team_array[i]->weighting += 2;
 			} else if (i < 12){
 				prem.team_array[i]->weighting += 1;
 				champ.team_array[i]->weighting += 1;
 				league1.team_array[i]->weighting += 1;
 				league2.team_array[i]->weighting += 1;
 			} else if (i < 18){
-				prem.team_array[i]->weighting += 1;
-				champ.team_array[i]->weighting += 1;
-				league1.team_array[i]->weighting += 1;
-				league2.team_array[i]->weighting += 1;
-			} else {
 				prem.team_array[i]->weighting -= 1;
 				champ.team_array[i]->weighting -= 1;
-				league1.team_array[i]->weighting += 1;
-				league2.team_array[i]->weighting += 1;
+				league1.team_array[i]->weighting -= 1;
+				league2.team_array[i]->weighting -= 1;
+			} else {
+				prem.team_array[i]->weighting -= 2;
+				champ.team_array[i]->weighting -= 2;
+				league1.team_array[i]->weighting -= 2;
+				league2.team_array[i]->weighting -= 2;
 			}
 		}
 		cleanup_teams(&prem);
