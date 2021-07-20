@@ -1,6 +1,7 @@
 #include <string.h>
 #include <stdlib.h>
-#define HASHSIZE 101
+#include <stdio.h>
+#define HASHSIZE 1001
 
 
 struct node {
@@ -24,11 +25,11 @@ unsigned hash(char *s)
 /* get: look for s in hashtab */
 struct node *get(char *s)
 {
-	struct node *newnode;
+	struct node *retrievednode;
 
-	for (newnode = hashtab[hash(s)]; newnode != NULL; newnode = newnode->next)
-		if (strcmp(s, newnode->name) == 0)
-			return newnode;
+	for (retrievednode = hashtab[hash(s)]; retrievednode != NULL; retrievednode = retrievednode->next)
+		if (strcmp(s, retrievednode->name) == 0)
+			return retrievednode;
 	return NULL;
 }
 
