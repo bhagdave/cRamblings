@@ -4,6 +4,10 @@
 #include <limits.h>
 #include <setjmp.h>
 
+/*
+ * Needs to be compiled on GCC with -ftrapv
+*/
+
 static jmp_buf jumpBuffer;
 
 void signalHandler(int sig)
