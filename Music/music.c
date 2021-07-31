@@ -1,17 +1,23 @@
 #include "menu.h"
 #include "item.h"
 
+struct music_item *music_db = NULL;
+
 void addItem()
 {
+	struct music_item *new_item, *current, *previous;;
 	char media;
-	struct music_item *new_item;
+
 	new_item = create_music_item(); 
+    if (new_item == NULL)
+        return;
 	printf("Adding Music\n");
 	printf("------------\n");
 	printf("Artist:");
 	fgets(new_item->artist, ARTIST_MAX_LENGTH, stdin);
 	printf("\nAlbum:");
 	fgets(new_item->album, ALBUM_MAX_LENGTH, stdin);
+
 	printf("\nCD(c), Tape(t) or Vinyl(v)");
 	media = getchar();
 	switch (media) {
@@ -28,6 +34,13 @@ void addItem()
 			new_item->media = VINYL;
 			break;
 	}
+
+    if (music_db == NULL)
+        music_db = new_item;
+    else {
+        new_item->next = music_db;
+        music_db = new_item;
+    }
 
 }
 

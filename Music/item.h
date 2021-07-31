@@ -12,4 +12,5 @@ struct music_item{
 	char *artist;
 	char *album;
 	MEDIA media;
+    struct music_item *next;
 };
