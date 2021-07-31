@@ -44,6 +44,14 @@ void addItem()
 
 }
 
+void printItems()
+{
+    struct music_item *item;
+    printf("Artist          Album       Media");
+    for (item = music_db; item != NULL; item = item->next)
+        printf("%30s %30s %d", item->artist, item->album, item->media);
+}
+
 void findItem(){
     char searchFor;
     char searchTerm[ALBUM_MAX_LENGTH];
@@ -70,6 +78,7 @@ int main(int argc, char** argv)
 
 	root_menu = add_menu_option(NULL, 'A', "Add Music",addItem);
 	root_menu = add_menu_option(root_menu, 'F', "Find Music",findItem);
+	root_menu = add_menu_option(root_menu, 'P', "Print Items",printItems);
 	root_menu = add_menu_option(root_menu, 'q', "Quit",NULL);
 
     while (input != 'q'){
