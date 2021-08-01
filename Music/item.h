@@ -6,12 +6,13 @@
 #define ALBUM_MAX_LENGTH 120
 
 typedef enum {CD, TAPE, VINYL} MEDIA;
+typedef struct music_item music_item;
 
-typedef struct{
+struct music_item{
 	char *artist;
 	char *album;
 	MEDIA media;
-    struct music_item *next;
-} music_item;
+    music_item *next;
+};
 
 music_item *create_music_item();
