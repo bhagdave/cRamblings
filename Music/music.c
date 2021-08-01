@@ -27,15 +27,12 @@ void addItem()
         ;
 	switch (media) {
 		case 'c':
-			printf("CD");
 			new_item->media = CD;
 			break;
 		case 't':
-			printf("TAPE");
 			new_item->media = TAPE;
 			break;
 		case 'v':
-			printf("VINYL");
 			new_item->media = VINYL;
 			break;
 	}
