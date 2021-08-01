@@ -81,6 +81,8 @@ void findItem(){
         printf("Artist::");
     }
     scanf(" %s", searchTerm);
+    while (getchar() != '\n')
+        ;
     printf("Searching for %s\n", searchTerm);
 }
 
