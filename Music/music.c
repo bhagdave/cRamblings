@@ -20,6 +20,8 @@ void addItem()
 
 	printf("\nCD(c), Tape(t) or Vinyl(v)");
 	media = getchar();
+    while (getchar() != '\n')
+        ;
 	switch (media) {
 		case 'c':
 			printf("CD");
