@@ -1,11 +1,11 @@
 #include "menu.h"
 #include "item.h"
 
-struct music_item *music_db = NULL;
+music_item *music_db = NULL;
 
 void addItem()
 {
-	struct music_item *new_item, *current, *previous;;
+	music_item *new_item, *current, *previous;;
 	char media;
 
 	new_item = create_music_item(); 
@@ -46,7 +46,7 @@ void addItem()
 
 void printItems()
 {
-    struct music_item *item;
+    music_item *item;
     printf("Artist          Album       Media");
     for (item = music_db; item != NULL; item = item->next)
         printf("%30s %30s %d", item->artist, item->album, item->media);
