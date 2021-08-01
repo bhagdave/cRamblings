@@ -5,16 +5,19 @@ music_item *music_db = NULL;
 
 void addItem()
 {
-	music_item *new_item, *current, *previous;;
+	music_item *new_item;;
 	char media;
 
 	new_item = create_music_item(); 
     if (new_item == NULL)
         return;
+
 	printf("Adding Music\n");
 	printf("------------\n");
+
 	printf("Artist:");
 	fgets(new_item->artist, ARTIST_MAX_LENGTH, stdin);
+
 	printf("\nAlbum:");
 	fgets(new_item->album, ALBUM_MAX_LENGTH, stdin);
 
@@ -49,9 +52,22 @@ void addItem()
 void printItems()
 {
     music_item *item;
-    printf("Artist          Album       Media");
-    for (item = music_db; item != NULL; item = item->next)
-        printf("%30s %30s %d", item->artist, item->album, item->media);
+    for (item = music_db; item != NULL; item = item->next){
+        printf("%s %s", item->artist, item->album);
+        switch (item->media) {
+            case CD:
+                printf(" CD\n");
+                break;
+            case TAPE:
+                printf(" Cassette\n");
+                break;
+            case VINYL:
+                printf(" Vinyl\n");
+                break;
+            default:
+                printf("\n");
+        }
+    }
 }
 
 void findItem(){
