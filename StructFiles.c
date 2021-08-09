@@ -15,14 +15,14 @@ int main()
     FILE *infile;
     struct contact input;
 
-    outfile = fopen(DATAFILE, "wb");
+    outfile = fopen(DATAFILE, "ab");
     if (outfile == NULL){
         fprintf(stderr, "\nError opening file.\n");
         exit(1);
     }
     
-    struct contact input1 = {1, "Dave", "Gill"};
-    struct contact input2 = {2, "Eileen", "Gill"};
+    struct contact input1 = {3, "Harry", "Gill"};
+    struct contact input2 = {4, "Bella", "Gill"};
 
     fwrite(&input1, sizeof(struct contact), 1, outfile);
     fwrite(&input2, sizeof(struct contact), 1, outfile);
