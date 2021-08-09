@@ -5,7 +5,7 @@
 #define ARTIST_MAX_LENGTH 75
 #define ALBUM_MAX_LENGTH 120
 
-typedef enum {CD, TAPE, VINYL} MEDIA;
+typedef enum {CD = 10, TAPE, VINYL} MEDIA;
 typedef struct music_item music_item;
 
 struct music_item{

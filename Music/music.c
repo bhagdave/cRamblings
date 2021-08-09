@@ -1,7 +1,6 @@
-#include <string.h>
-#include <stdio.h>
 #include "menu.h"
 #include "item.h"
+#define DATAFILE "music.db"
 
 music_item *music_db = NULL;
 
@@ -95,6 +94,25 @@ void findItem(){
     printf("Searching for %s\n", searchTerm);
 }
 
+void saveItems()
+{
+    FILE *outfile;
+    music_item *item;
+
+    outfile = fopen(DATAFILE, "a");
+    if (outfile == NULL){
+        fprintf(stderr, "\nError opening file.\n");
+        exit(1);
+    }
+    
+    for (item = music_db; item != NULL; item = item->next){
+        fwrite(item->artist, sizeof(char) * ARTIST_MAX_LENGTH,1, outfile);
+        fwrite(item->album, sizeof(char) * ALBUM_MAX_LENGTH,1, outfile);
+        fprintf(outfile,"%d\n", item->media);
+    }
+    fclose(outfile);
+}
+
 int main(int argc, char** argv)
 {
 
@@ -105,6 +123,7 @@ int main(int argc, char** argv)
 	root_menu = add_menu_option(NULL, 'A', "Add Music",addItem);
 	root_menu = add_menu_option(root_menu, 'F', "Find Music",findItem);
 	root_menu = add_menu_option(root_menu, 'P', "Print Items",printItems);
+	root_menu = add_menu_option(root_menu, 'S', "Save Items",saveItems);
 	root_menu = add_menu_option(root_menu, 'q', "Quit",NULL);
 
     while (input != 'q'){
