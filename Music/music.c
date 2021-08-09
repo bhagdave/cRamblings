@@ -1,3 +1,5 @@
+#include <string.h>
+#include <stdio.h>
 #include "menu.h"
 #include "item.h"
 
@@ -17,9 +19,13 @@ void addItem()
 
 	printf("Artist:");
 	fgets(new_item->artist, ARTIST_MAX_LENGTH, stdin);
+    // get rid of \n in response
+    new_item->artist[strcspn(new_item->artist, "\n")] = 0;
 
 	printf("\nAlbum:");
 	fgets(new_item->album, ALBUM_MAX_LENGTH, stdin);
+    // get rid of \n in response
+    new_item->album[strcspn(new_item->album, "\n")] = 0;
 
 	printf("\nCD(c), Tape(t) or Vinyl(v)");
 	media = getchar();
@@ -49,21 +55,24 @@ void addItem()
 void printItems()
 {
     music_item *item;
+    char * media;
+    // print table header
+    printf("%-25.25s%25.25s%10.10s\n", "Artist", "Album", "Media");
     for (item = music_db; item != NULL; item = item->next){
-        printf("%s %s", item->artist, item->album);
         switch (item->media) {
             case CD:
-                printf(" CD\n");
+                media = "CD";
                 break;
             case TAPE:
-                printf(" Cassette\n");
+                media = "Cassette";
                 break;
             case VINYL:
-                printf(" Vinyl\n");
+                media = "Vinyl";
                 break;
             default:
-                printf("\n");
+                media = "";
         }
+        printf("%-25.25s%25.25s%10.10s", item->artist, item->album, media);
     }
 }
 
