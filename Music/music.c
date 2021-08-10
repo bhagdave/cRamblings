@@ -113,6 +113,20 @@ void saveItems()
     fclose(outfile);
 }
 
+void loadItems()
+{
+    FILE *infile;
+    music_item *item;
+
+    infile = fopen(DATAFILE, "r");
+    if (infile == NULL){
+        fprintf(stderr, "\nError openning file.\n");
+        exit(1);
+    }
+
+    fclose(infile);
+}
+
 int main(int argc, char** argv)
 {
 
@@ -124,6 +138,7 @@ int main(int argc, char** argv)
 	root_menu = add_menu_option(root_menu, 'F', "Find Music",findItem);
 	root_menu = add_menu_option(root_menu, 'P', "Print Items",printItems);
 	root_menu = add_menu_option(root_menu, 'S', "Save Items",saveItems);
+	root_menu = add_menu_option(root_menu, 'L', "Load Items",loadItems);
 	root_menu = add_menu_option(root_menu, 'q', "Quit",NULL);
 
     while (input != 'q'){
