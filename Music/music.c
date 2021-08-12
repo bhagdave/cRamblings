@@ -71,7 +71,7 @@ void printItems()
             default:
                 media = "";
         }
-        printf("%-25.25s%25.25s%10.10s", item->artist, item->album, media);
+        printf("%-25.25s%25.25s%10.10s\n", item->artist, item->album, media);
     }
 }
 
@@ -100,7 +100,7 @@ void saveItems()
     music_item *item;
     int media;
 
-    outfile = fopen(DATAFILE, "a");
+    outfile = fopen(DATAFILE, "w");
     if (outfile == NULL){
         fprintf(stderr, "\nError opening file.\n");
         exit(1);
