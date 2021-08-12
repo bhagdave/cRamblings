@@ -128,6 +128,14 @@ void loadItems()
         fprintf(stderr, "\nError openning file.\n");
         exit(1);
     }
+    while (fread(item, sizeof(music_item), 1, infile)){
+        if (music_db == NULL)
+            music_db = item;
+        else {
+            item->next = music_db;
+            music_db = item;
+        }
+    }
 
     fclose(infile);
 }
