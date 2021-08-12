@@ -1,7 +1,6 @@
-#include <string.h>
-#include <stdio.h>
 #include "menu.h"
 #include "item.h"
+#define DATAFILE "music.db"
 
 music_item *music_db = NULL;
 
@@ -72,7 +71,7 @@ void printItems()
             default:
                 media = "";
         }
-        printf("%-25.25s%25.25s%10.10s", item->artist, item->album, media);
+        printf("%-25.25s%25.25s%10.10s\n", item->artist, item->album, media);
     }
 }
 
@@ -95,6 +94,53 @@ void findItem(){
     printf("Searching for %s\n", searchTerm);
 }
 
+void saveItems()
+{
+    FILE *outfile;
+    music_item *item;
+    int media;
+
+    outfile = fopen(DATAFILE, "w");
+    if (outfile == NULL){
+        fprintf(stderr, "\nError opening file.\n");
+        exit(1);
+    }
+    
+    for (item = music_db; item != NULL; item = item->next){
+        fwrite(item, sizeof(music_item), 1, outfile);
+    }
+    fclose(outfile);
+}
+
+void loadItems()
+{
+    FILE *infile;
+    music_item *temp = create_music_item();;
+    music_item *last;
+
+
+    infile = fopen(DATAFILE, "r");
+    if (infile == NULL){
+        fprintf(stderr, "\nError openning file.\n");
+        exit(1);
+    }
+    while (fread(temp, sizeof(music_item), 1, infile) == 1){
+        if (music_db == NULL){
+            music_db = last = create_music_item();
+        }
+        else {
+            last->next = create_music_item();
+            last = last->next;
+        }
+        last->media = temp->media;
+        strcpy(last->album, temp->album);
+        strcpy(last->artist, temp->artist);
+        last->next = NULL;
+    }
+
+    fclose(infile);
+}
+
 int main(int argc, char** argv)
 {
 
@@ -105,6 +151,8 @@ int main(int argc, char** argv)
 	root_menu = add_menu_option(NULL, 'A', "Add Music",addItem);
 	root_menu = add_menu_option(root_menu, 'F', "Find Music",findItem);
 	root_menu = add_menu_option(root_menu, 'P', "Print Items",printItems);
+	root_menu = add_menu_option(root_menu, 'S', "Save Items",saveItems);
+	root_menu = add_menu_option(root_menu, 'L', "Load Items",loadItems);
 	root_menu = add_menu_option(root_menu, 'q', "Quit",NULL);
 
     while (input != 'q'){
