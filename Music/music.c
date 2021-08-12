@@ -115,26 +115,27 @@ void saveItems()
 void loadItems()
 {
     FILE *infile;
-    music_item *item;
+    music_item *temp = create_music_item();;
+    music_item *last;
 
-	item = create_music_item(); 
-    if (item == NULL){
-        fprintf(stderr, "\nNo memory to load items\n");
-        exit(1);
-    }
 
     infile = fopen(DATAFILE, "r");
     if (infile == NULL){
         fprintf(stderr, "\nError openning file.\n");
         exit(1);
     }
-    while (fread(item, sizeof(music_item), 1, infile)){
-        if (music_db == NULL)
-            music_db = item;
-        else {
-            item->next = music_db;
-            music_db = item;
+    while (fread(temp, sizeof(music_item), 1, infile) == 1){
+        if (music_db == NULL){
+            music_db = last = create_music_item();
         }
+        else {
+            last->next = create_music_item();
+            last = last->next;
+        }
+        last->media = temp->media;
+        strcpy(last->album, temp->album);
+        strcpy(last->artist, temp->artist);
+        last->next = NULL;
     }
 
     fclose(infile);
