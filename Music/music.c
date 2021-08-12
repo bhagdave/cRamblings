@@ -98,6 +98,7 @@ void saveItems()
 {
     FILE *outfile;
     music_item *item;
+    int media;
 
     outfile = fopen(DATAFILE, "a");
     if (outfile == NULL){
@@ -106,9 +107,7 @@ void saveItems()
     }
     
     for (item = music_db; item != NULL; item = item->next){
-        fwrite(item->artist, sizeof(char) * ARTIST_MAX_LENGTH,1, outfile);
-        fwrite(item->album, sizeof(char) * ALBUM_MAX_LENGTH,1, outfile);
-        fprintf(outfile,"%d\n", item->media);
+        fwrite(item, sizeof(music_item), 1, outfile);
     }
     fclose(outfile);
 }
@@ -117,6 +116,12 @@ void loadItems()
 {
     FILE *infile;
     music_item *item;
+
+	item = create_music_item(); 
+    if (item == NULL){
+        fprintf(stderr, "\nNo memory to load items\n");
+        exit(1);
+    }
 
     infile = fopen(DATAFILE, "r");
     if (infile == NULL){

@@ -9,8 +9,8 @@ typedef enum {CD = 10, TAPE, VINYL} MEDIA;
 typedef struct music_item music_item;
 
 struct music_item{
-	char *artist;
-	char *album;
+	char artist[ARTIST_MAX_LENGTH];
+	char album[ALBUM_MAX_LENGTH];
 	MEDIA media;
     music_item *next;
 };
