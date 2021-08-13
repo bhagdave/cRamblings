@@ -9,6 +9,7 @@ void addItem()
 	music_item *new_item;;
 	char media;
 
+    system("clear"); 
 	new_item = create_music_item(); 
     if (new_item == NULL)
         return;
@@ -49,12 +50,14 @@ void addItem()
         music_db = new_item;
     }
 
+    printf("Music added!\n\n");
 }
 
 void printItems()
 {
     music_item *item;
     char * media;
+    system("clear"); 
     // print table header
     printf("%-25.25s%25.25s%10.10s\n", "Artist", "Album", "Media");
     for (item = music_db; item != NULL; item = item->next){
@@ -73,12 +76,14 @@ void printItems()
         }
         printf("%-25.25s%25.25s%10.10s\n", item->artist, item->album, media);
     }
+    printf("\n");
 }
 
 void findItem(){
     char searchFor;
     char searchTerm[ALBUM_MAX_LENGTH];
 
+    system("clear"); 
     printf("\nA:Artist or B:Album?");
     searchFor = getchar();
     while (getchar() != '\n')
@@ -110,6 +115,8 @@ void saveItems()
         fwrite(item, sizeof(music_item), 1, outfile);
     }
     fclose(outfile);
+    system("clear");
+    printf("Items saved\n\n");
 }
 
 void loadItems()
@@ -118,6 +125,8 @@ void loadItems()
     music_item *temp = create_music_item();;
     music_item *last;
 
+    system("clear");
+    printf("Loading Items\n");
 
     infile = fopen(DATAFILE, "r");
     if (infile == NULL){
@@ -125,6 +134,7 @@ void loadItems()
         exit(1);
     }
     while (fread(temp, sizeof(music_item), 1, infile) == 1){
+        printf(".");
         if (music_db == NULL){
             music_db = last = create_music_item();
         }
@@ -139,6 +149,7 @@ void loadItems()
     }
 
     fclose(infile);
+    printf("\n\n");
 }
 
 int main(int argc, char** argv)
@@ -148,6 +159,7 @@ int main(int argc, char** argv)
 
 	struct menu_option *root_menu;
 
+    system("clear"); 
 	root_menu = add_menu_option(NULL, 'A', "Add Music",addItem);
 	root_menu = add_menu_option(root_menu, 'F', "Find Music",findItem);
 	root_menu = add_menu_option(root_menu, 'P', "Print Items",printItems);
