@@ -80,6 +80,7 @@ void printItems()
 }
 
 void findItem(){
+    music_item *item;
     char searchFor;
     char searchTerm[ALBUM_MAX_LENGTH];
 
@@ -89,14 +90,25 @@ void findItem(){
     while (getchar() != '\n')
         ;
     if (searchFor == 'A'){
-        printf("Album:");
+        printf("Artist:");
     } else {
-        printf("Artist::");
+        printf("Album::");
     }
     scanf(" %s", searchTerm);
     while (getchar() != '\n')
         ;
     printf("Searching for %s\n", searchTerm);
+
+    for (item = music_db; item != NULL; item = item->next){
+        if (searchFor == 'A'){
+            if (strcmp(item->artist, searchTerm) == 0)
+                printf("%-25.25s%25.25s\n", item->artist, item->album);
+        } else {
+            if (strcmp(item->album, searchTerm) == 0)
+                printf("%-25.25s%25.25s\n", item->artist, item->album);
+        }
+    }
+    printf("\n");
 }
 
 void saveItems()
