@@ -111,6 +111,10 @@ void findItem(){
     printf("\n");
 }
 
+void editItem(){
+    system("clear"); 
+}
+
 void saveItems()
 {
     FILE *outfile;
@@ -174,6 +178,7 @@ int main(int argc, char** argv)
     system("clear"); 
 	root_menu = add_menu_option(NULL, 'A', "Add Music",addItem);
 	root_menu = add_menu_option(root_menu, 'F', "Find Music",findItem);
+	root_menu = add_menu_option(root_menu, 'E', "Edit Item",editItem);
 	root_menu = add_menu_option(root_menu, 'P', "Print Items",printItems);
 	root_menu = add_menu_option(root_menu, 'S', "Save Items",saveItems);
 	root_menu = add_menu_option(root_menu, 'L', "Load Items",loadItems);
