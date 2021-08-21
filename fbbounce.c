@@ -99,7 +99,16 @@ int main(int argc, char** argv)
     pause.tv_nsec = 10 * 1000*1000;
 
     saveBlock(x, y, BLOCKSIZE, block);
+    for(x = 0; x < vinfo.xres; x++) {
+        setPixel(x , y, 0xFF, 0xFF, 0x00, 0xFF);
+    } 
+
+    for(y = 0, x = 0; x < vinfo.xres, y < vinfo.yres; y++, x++) {
+        setPixel(x , y, 0xFF, 0x00, 0x00, 0x00);
+    } 
     for(;;) {
+
+        //ioctl(fd, FBIO_WAITFORVSYNC, 0);
         restoreBlock(x, y, BLOCKSIZE, block);
         x = x + vx;
         y = y + vy;
@@ -124,12 +133,5 @@ int main(int argc, char** argv)
     }
 
 
-    for(x = 0; x < vinfo.xres; x++) {
-        setPixel(x , y, 0xFF, 0xFF, 0x00, 0xFF);
-    } 
-
-    for(y = 0, x = 0; x < vinfo.xres, y < vinfo.yres; y++, x++) {
-        setPixel(x , y, 0xFF, 0x00, 0x00, 0x00);
-    } 
     return (EXIT_SUCCESS);
 }
