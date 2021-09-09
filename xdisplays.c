@@ -2,6 +2,7 @@
  * Simple Xdisplay program to use x11
  *    Requires compiling with -lX11
  *
+ * On AlmaLinux this requires install libX11-devel Library
 */
 #include <stdio.h>
 #include <stdlib.h>
