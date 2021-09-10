@@ -20,8 +20,14 @@ int main(int argc, char** argv)
 
     Window w = XCreateSimpleWindow(dpy, DefaultRootWindow(dpy), 200, 600, 500, 500, 0 , blackColor, blackColor);
 
+    XSelectInput(dpy, w, StructureNotifyMask);
     XMapWindow(dpy, w);
     XFlush(dpy);
+    for (;;){
+        XEvent e;
+        XNextEvent(dpy, &e);
+        if (e.type == MapNotify) break;
+    }
     sleep(1);
     GC gc = XCreateGC(dpy, w, 0, 0);
     XSetForeground(dpy, gc, whiteColor);
