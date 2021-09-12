@@ -2,12 +2,15 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-__thread int i;
+int i;
+pthread_mutex_t counterMutex=PTHREAD_MUTEX_INITIALIZER;
 
 void * counter(void *p) 
 {
     for (int j =0; j < 500000; j++){
+        pthread_mutex_lock(&counterMutex);
         i++;
+        pthread_mutex_unlock(&counterMutex);
     }
     return &i;
 }
